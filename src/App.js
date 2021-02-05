@@ -7,7 +7,8 @@ import DataBinding from './components/DataBinding/DataBinding';
 import HandleEvent from './components/HandleEvent/HandleEvent';
 import DemoState from './components/StateReact/DemoState';
 import ChooseCar from './components/StateReact/ChooseCar';
-// import RenderWithMap from './RenderWithMap/RenderWithMap';
+import RenderWithMap from './components/RenderWithMap/RenderWithMap';
+import RenderCardMovie from './components/RenderWithMap/RenderCardMovie';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       {/* <DemoState /> */}
       {/* <ChooseCar /> */}
       {/* <RenderWithMap /> */}
-
+      <RenderCardMovie />
     </div>
   );
 }
