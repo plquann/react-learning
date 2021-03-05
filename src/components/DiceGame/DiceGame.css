@@ -1,0 +1,14 @@
+@font-face{
+    font-family: 'fontDiceGame';
+    src: url('../../assets/fonts/Pony.ttf');
+}
+
+.bgDiceGame {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url('../../assets/img/bgGame.png');
+  font-family: fontDiceGame;
+}

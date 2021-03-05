@@ -15,12 +15,15 @@ export const cartReducer = (state = initialState, action) => {
                         index === pos ? { ...itemCart, quantity: itemCart.quantity + 1 } : itemCart)
                 };
 
-            return { ...state, cart: [...state.cart, action.payload] };
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+            };
         }
         case 'DELETE_CART': {
             return {
-                ...state, cart: state.cart.filter(itemCart =>
-                    itemCart.code !== action.payload)
+                ...state,
+                cart: state.cart.filter(itemCart => itemCart.code !== action.payload),
             };
         }
         case 'CHANGE_QUANTITY': {
@@ -29,13 +32,13 @@ export const cartReducer = (state = initialState, action) => {
 
             if (state.cart[index].quantity + action.payload.count === 0) {
                 return {
-                    ...state, cart: state.cart.filter(itemCart =>
-                        itemCart.code !== action.payload.code)
+                    ...state,
+                    cart: state.cart.filter(itemCart => itemCart.code !== action.payload.code),
                 }
             }
             return {
-                ...state, cart: state.cart.map((itemCart) =>
-                    itemCart.code === action.payload.code ? { ...itemCart, quantity: itemCart.quantity + action.payload.count } : itemCart)
+                ...state,
+                cart: state.cart.map((itemCart) => itemCart.code === action.payload.code ? { ...itemCart, quantity: itemCart.quantity + action.payload.count } : itemCart)
             };
         }
         default:
