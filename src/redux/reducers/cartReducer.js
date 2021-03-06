@@ -4,11 +4,11 @@ const initialState = {
     ]
 }
 
-export const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state = initialState, { type, payload }) => {
 
-    switch (action.type) {
+    switch (type) {
         case 'ADD_TO_CART': {
-            const index = state.cart.findIndex((itemCart) => itemCart.code === action.payload.code);
+            const index = state.cart.findIndex((itemCart) => itemCart.code === payload.code);
             if (index !== -1)
                 return {
                     ...state, cart: state.cart.map((itemCart, pos) =>
@@ -17,28 +17,29 @@ export const cartReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                cart: [...state.cart, action.payload]
+                cart: [...state.cart, payload]
             };
         }
         case 'DELETE_CART': {
             return {
                 ...state,
-                cart: state.cart.filter(itemCart => itemCart.code !== action.payload),
+                cart: state.cart.filter(itemCart => itemCart.code !== payload),
             };
         }
         case 'CHANGE_QUANTITY': {
             const index = state.cart.findIndex((itemCart) =>
-                itemCart.code === action.payload.code);
+                itemCart.code === payload.code);
 
-            if (state.cart[index].quantity + action.payload.count === 0) {
+            if (state.cart[index].quantity + payload.count === 0) {
                 return {
                     ...state,
-                    cart: state.cart.filter(itemCart => itemCart.code !== action.payload.code),
+                    cart: state.cart.filter(itemCart => itemCart.code !== payload.code),
                 }
             }
             return {
                 ...state,
-                cart: state.cart.map((itemCart) => itemCart.code === action.payload.code ? { ...itemCart, quantity: itemCart.quantity + action.payload.count } : itemCart)
+                cart: state.cart.map((itemCart) =>
+                    itemCart.code === payload.code ? { ...itemCart, quantity: itemCart.quantity + payload.count } : itemCart)
             };
         }
         default:
